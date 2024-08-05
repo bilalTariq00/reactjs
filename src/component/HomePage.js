@@ -20,13 +20,13 @@ const HomePage = () => {
   };
 
   return (
-    <div style={{ backgroundColor: 'mediumpurple', height: '575px' }}>
-      <Grid container spacing={2} alignItems="center" justifyContent='center'>
+    <div style={{ backgroundColor: '#354f52', height: '100vh', padding: '20px' }}>
+      <Grid container spacing={2} alignItems="center" justifyContent='center' style={{ height: '100%' }}>
         <Grid item xs={12} md={6}>
-          <Typography variant="h3" gutterBottom>
+          <Typography variant="h3" gutterBottom style={{ color: 'white' }}>
             Quiz Game
           </Typography>
-          <Typography variant="body1" sx={{ mb: 2, mr: 2 }}>
+          <Typography variant="body1" sx={{ mb: 2, mr: 2 }} style={{ color: 'white' }}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
             hendrerit finibus ex sed ultrices. Duis commodo diam mauris, ac
             facilisis ante vehicula a. Sed vel arcu elit. Integer ac lorem nec
@@ -37,12 +37,13 @@ const HomePage = () => {
           </Button>
         </Grid>
         <Grid item xs={12} md={4}>
-          <Card>
+          <Card style={{ boxShadow: 'none', backgroundColor: 'transparent' }}>
             <CardMedia
               component="img"
-              height="300"
-              image="https://static.vecteezy.com/system/resources/previews/009/656/928/original/the-template-of-the-mobile-application-interface-for-the-quiz-on-a-blue-background-test-exam-questions-and-answers-for-a-tv-show-illustration-of-eps10-vector.jpg"
-              alt="Random"
+              height="auto"
+              image="/pngaaa.com-2050119.png" // Ensure this image has transparency
+              alt="Quiz Illustration"
+              style={{ width: '100%', objectFit: 'contain' }} // Ensure the image fits correctly
             />
           </Card>
         </Grid>

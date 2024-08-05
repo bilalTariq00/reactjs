@@ -3,23 +3,24 @@ import Quiz from './QuizPages/Quiz';
 import HomePage from './component/HomePage';
 import {createBrowserRouter, RouterProvider} from 'react-router-dom'
 import { createMuiTheme,ThemeProvider } from '@mui/material';
-import { purple } from '@mui/material/colors';
+import { green, purple } from '@mui/material/colors';
 import NavigationWrapper from './component/NavigationWrapper';
 import DemoQuiz from './QuizPages/DemoQuiz';
 import LogIn from './LogIn/LogIn';
 import { Provider } from 'react-redux';
 import { store } from './store/store';
+import QuizCreation from './QuizPages/QuizCreation';
+import MyQuizzes from './QuizPages/MyQuizzes';
+import QuizAttempt from './QuizPages/QuizAttempt';
 
 const theme=createMuiTheme(
   {
     palette:{
       primary:{
-        main:'#E6E6FA'
+        main:'#FFFFFF'
       },
-      secondary:purple,
-      background:{
-        default:'#E6E6FA'
-      }
+      secondary:green,
+     
     
     },
     typography:{
@@ -45,6 +46,17 @@ const router=createBrowserRouter([
     path:'/quiz',
     element:<Quiz />
   },
+  {
+    path:'/quizcreation',
+    element:<QuizCreation/>
+  },
+  {
+    path:'/my-quizzes',
+    element:<MyQuizzes/>
+  },{
+    path:"/quiz-attempt",
+    element:<QuizAttempt/>
+  }
   ]}
   ,{
     path:'/login',

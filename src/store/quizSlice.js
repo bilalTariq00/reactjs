@@ -1,132 +1,126 @@
-// quizSlice.js
-import { createSlice } from '@reduxjs/toolkit';
+// import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {
-  currentQuestionIndex: 0,
-  score: 0,
-  showResult: false,
-  timer: 60,
-  timerOn: false,
-  selectedAnswer: null,
-  userResponses: [],
-  quizQuestions: [
-    {
-      id: 1,
-      question: 'What is the capital of France?',
-      options: ['Paris', 'London', 'Berlin', 'Madrid'],
-      correctAnswer: 'Paris',
-    },
-    {
-      id: 2,
-      question: 'Who wrote the novel "To Kill a Mockingbird"?',
-      options: ['Jane Austen', 'Harper Lee', 'F. Scott Fitzgerald', 'Ernest Hemingway'],
-      correctAnswer: 'Harper Lee',
-    },
-    {
-      id: 3,
-      question: 'Which planet is known as the Red Planet?',
-      options: ['Venus', 'Mars', 'Jupiter', 'Saturn'],
-      correctAnswer: 'Mars',
-    },
-    {
-      id: 4,
-      question: 'What is the tallest mountain in the world?',
-      options: ['Mount Everest', 'K2', 'Kangchenjunga', 'Lhotse'],
-      correctAnswer: 'Mount Everest',
-    },
-    {
-      id: 5,
-      question: 'Who painted the Mona Lisa?',
-      options: ['Leonardo da Vinci', 'Vincent van Gogh', 'Pablo Picasso', 'Michelangelo'],
-      correctAnswer: 'Leonardo da Vinci',
-    },
-  ],
-};
+// const initialState = {
+//   quizQuestions: [], // Array to hold quiz questions
+//   currentQuestionIndex: 0, // Index of the current question being displayed
+//   score: 0, // User's score
+//   showResult: false, // Flag to indicate if quiz result should be displayed
+//   timer: 60, // Timer countdown in seconds
+//   timerOn: false, // Flag to indicate if timer is running
+//   selectedAnswer: null, // Currently selected answer by user
+//   userResponses: [], // Array to store user responses for each question
+// };
 
-export const quizSlice = createSlice({
-  name: 'quiz',
-  initialState,
-  reducers: {
-    setCurrentQuestionIndex: (state, action) => {
-      state.currentQuestionIndex = action.payload;
-    },
-    setScore: (state, action) => {
-      state.score = action.payload;
-    },
-    setShowResult: (state, action) => {
-      state.showResult = action.payload;
-    },
-    setTimer: (state, action) => {
-      state.timer = action.payload;
-    },
-    setTimerOn: (state, action) => {
-      state.timerOn = action.payload;
-    },
-    setSelectedAnswer: (state, action) => {
-      state.selectedAnswer = action.payload;
-    },
-    setUserResponses: (state, action) => {
-      state.userResponses = action.payload;
-    },
-    startQuiz: (state) => {
-      state.score = 0;
-      state.currentQuestionIndex = 0;
-      state.timer = 60;
-      state.showResult = false;
-      state.timerOn = true;
-      state.userResponses = [];
-    },
-    handleAnswerSelect: (state, action) => {
-      const selectedOption = action.payload;
-      const currentQuestion = state.quizQuestions[state.currentQuestionIndex];
-      const isCorrect = selectedOption === currentQuestion.correctAnswer;
+// const quizSlice = createSlice({
+//   name: 'quiz',
+//   initialState,
+//   reducers: {
+//     // Set quiz questions fetched from localStorage
+//     setQuizQuestions: (state, action) => {
+//       state.quizQuestions = action.payload;
+//     },
 
-      state.selectedAnswer = selectedOption;
+//     // Set current question index
+//     setCurrentQuestionIndex: (state, action) => {
+//       state.currentQuestionIndex = action.payload;
+//     },
 
-      state.userResponses.push({
-        questionId: currentQuestion.id,
-        selectedAnswer: selectedOption,
-        correctAnswer: currentQuestion.correctAnswer,
-        isCorrect,
-      });
+//     // Set user's score
+//     setScore: (state, action) => {
+//       state.score = action.payload;
+//     },
 
-      if (isCorrect) {
-        state.score += 1;
-      }
+//     // Set flag to show quiz result
+//     setShowResult: (state, action) => {
+//       state.showResult = action.payload;
+//     },
 
-      if (state.currentQuestionIndex === state.quizQuestions.length - 1) {
-        state.showResult = true;
-        state.timerOn = false;
-      } else {
-        state.currentQuestionIndex += 1;
-        state.selectedAnswer = null;
-      }
-    },
-    restartQuiz: (state) => {
-      state.score = 0;
-      state.currentQuestionIndex = 0;
-      state.showResult = false;
-      state.timer = 60;
-      state.timerOn = false;
-      state.selectedAnswer = null;
-      state.userResponses = [];
-    },
-  },
-});
+//     // Set timer value
+//     setTimer: (state, action) => {
+//       state.timer = action.payload;
+//     },
 
-// Export actions
-export const {
-  setCurrentQuestionIndex,
-  setScore,
-  setShowResult,
-  setTimer,
-  setTimerOn,
-  setSelectedAnswer,
-  setUserResponses,
-  startQuiz,
-  handleAnswerSelect,
-  restartQuiz,
-} = quizSlice.actions;
+//     // Set flag to control timer
+//     setTimerOn: (state, action) => {
+//       state.timerOn = action.payload;
+//     },
 
-// Export reducer
-export default quizSlice.reducer;
+//     // Set currently selected answer
+//     setSelectedAnswer: (state, action) => {
+//       state.selectedAnswer = action.payload;
+//     },
+
+//     // Set user responses for each question
+//     setUserResponses: (state, action) => {
+//       const { index, response } = action.payload;
+//       state.userResponses[index] = response;
+//     },
+
+//     // Start the quiz by setting initial values
+//     startQuiz: (state) => {
+//       state.currentQuestionIndex = 0;
+//       state.score = 0;
+//       state.showResult = false;
+//       state.timer = 60;
+//       state.timerOn = true;
+//       state.selectedAnswer = null;
+//       state.userResponses = [];
+//     },
+
+//     // Handle user's answer selection
+//     handleAnswerSelect: (state, action) => {
+//       const { selectedAnswer } = action.payload;
+//       const currentQuestion = state.quizQuestions[state.currentQuestionIndex];
+//       const isCorrect = selectedAnswer === currentQuestion.correctAnswer;
+
+//       // Store the user response for the current question
+//       state.userResponses[state.currentQuestionIndex] = {
+//         questionId: currentQuestion.id,
+//         selectedAnswer,
+//         correctAnswer: currentQuestion.correctAnswer,
+//         isCorrect,
+//       };
+
+//       // Calculate score if answer is correct
+//       if (isCorrect) {
+//         state.score += 1;
+//       }
+
+//       // Move to next question or show result
+//       if (state.currentQuestionIndex < state.quizQuestions.length - 1) {
+//         state.currentQuestionIndex += 1;
+//         state.selectedAnswer = null; // Reset selected answer for the next question
+//       } else {
+//         state.showResult = true;
+//         state.timerOn = false;
+//       }
+//     },
+
+//     // Restart the quiz by resetting all state values
+//     restartQuiz: (state) => {
+//       state.currentQuestionIndex = 0;
+//       state.score = 0;
+//       state.showResult = false;
+//       state.timer = 60;
+//       state.timerOn = true;
+//       state.selectedAnswer = null;
+//       state.userResponses = [];
+//     },
+//   },
+// });
+
+// export const {
+//   setQuizQuestions,
+//   setCurrentQuestionIndex,
+//   setScore,
+//   setShowResult,
+//   setTimer,
+//   setTimerOn,
+//   setSelectedAnswer,
+//   setUserResponses,
+//   startQuiz,
+//   handleAnswerSelect,
+//   restartQuiz,
+// } = quizSlice.actions;
+
+// export default quizSlice.reducer;

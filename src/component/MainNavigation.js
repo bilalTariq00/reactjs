@@ -19,7 +19,7 @@ const Navbar = () => {
   };
 
   return (
-    <AppBar position="static" sx={{ mb: 2 }}>
+    <AppBar position="static" sx={{  color:'darkgreen', backgroundColor:'white' }}>
       <Toolbar>
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
           Quiz App
@@ -29,6 +29,12 @@ const Navbar = () => {
         </Button>
         <Button component={Link} to="/demoquiz" color="inherit">
           Other Quiz
+        </Button>
+        <Button component={Link} to="/quizcreation" color="inherit">
+          Create Your Own
+        </Button>
+        <Button component={Link} to='/my-quizzes' color="inherit">
+          My Quiz
         </Button>
         {loggedIn && (
           <Button color="inherit" variant='contained' onClick={handleLogout}>

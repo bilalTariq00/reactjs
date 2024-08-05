@@ -1,4 +1,3 @@
-// src/components/LogIn.js
 import React from 'react';
 import { Grid, Paper, TextField, Button, Typography } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
@@ -31,26 +30,28 @@ const LogIn = () => {
       style={{ minHeight: '100vh' }}
     >
       <Grid item xs={10} sm={6} md={4}>
-        <Paper elevation={3} style={{ padding: '20px', height: '400px', backgroundColor: 'lavender' }}>
-          <Typography variant="h5" align="center" gutterBottom>
+        <Paper elevation={3} style={{ padding: '20px', height: '400px', backgroundColor: '#354f52' }}>
+          <Typography variant="h5" align="center" gutterBottom color='primary'>
             Login
           </Typography>
           <TextField
-            color='secondary'
+             color='secondary'
             label="Username"
             variant="filled"
             fullWidth
             margin="normal"
+            InputLabelProps={{ style: { color: 'white' } }} // Customize label text color
             value={username}
             onChange={(e) => dispatch(setUsername(e.target.value))}
           />
           <TextField
-            color='secondary'
+          color='secondary'
             label="Password"
             variant="filled"
             type="password"
             fullWidth
             margin="normal"
+            InputLabelProps={{ style: { color: 'white' } }} // Customize label text color
             value={password}
             onChange={(e) => dispatch(setPassword(e.target.value))}
           />
@@ -64,7 +65,7 @@ const LogIn = () => {
             color="primary"
             fullWidth
             onClick={handleLogin}
-            style={{ marginTop: '10px' }}
+            style={{ marginTop: '10px', color: '#354f52' }} // Customize button text color
           >
             Login
           </Button>
